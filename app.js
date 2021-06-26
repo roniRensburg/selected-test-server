@@ -16,7 +16,7 @@ app.post("/send", (req, res) => {
     console.log(req.body);
     const mailOptions = {
       from: req.body.email,
-      to: process.env.emailRecipient,
+      to: "ronirensburg@gmail.com",
       subject: req.body.subject,
       html: `
          <p>You have a new contact request.</p>
