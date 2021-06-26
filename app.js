@@ -33,13 +33,13 @@ app.post("/send", (req, res) => {
     config.sendMail(mailOptions, function (err, info) {
       if (err) {
         console.log(err);
-        return res.status(500).send({
+        return res.status(500).json({
           success: false,
           message: "Something went wrong. Try again later",
           err: err,
         });
       } else {
-        return res.send({
+        return res.json({
           success: true,
           message: "Thanks for contacting us. we will get back to you shortly",
         });
@@ -47,7 +47,7 @@ app.post("/send", (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    return res.status(500).json({
       success: false,
       message: "Something went wrong. Try again later",
       err: err,
