@@ -5,8 +5,9 @@ dotenv.config();
 var transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
-  ignoreTLS: false,
-  secure: false,
+  tls: {
+    rejectUnauthorized: false,
+  },
   auth: {
     user: "ronirensburg@gmail.com",
     pass: "Azsxsza321",
