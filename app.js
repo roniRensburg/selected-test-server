@@ -36,6 +36,7 @@ app.post("/send", (req, res) => {
         return res.status(500).send({
           success: false,
           message: "Something went wrong. Try again later",
+          err: err,
         });
       } else {
         return res.send({
@@ -49,6 +50,7 @@ app.post("/send", (req, res) => {
     return res.status(500).send({
       success: false,
       message: "Something went wrong. Try again later",
+      err: err,
     });
   }
 });
