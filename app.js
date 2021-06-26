@@ -16,7 +16,11 @@ app.post("/send", (req, res) => {
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
   try {
-    if (!req.body.name || !req.body.subject || !req.body.message) {
+    if (
+      req.body.name === "" ||
+      req.body.subject === "" ||
+      req.body.message === ""
+    ) {
       return res.status(400).json({
         success: false,
         message: "Missed required Inputs - name, subject, message",
