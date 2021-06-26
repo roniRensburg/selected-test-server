@@ -9,8 +9,8 @@ var transporter = nodemailer.createTransport({
     rejectUnauthorized: false,
   },
   auth: {
-    user: "ronirensburg@gmail.com",
-    pass: "Azsxsza321",
+    user: process.env.email,
+    pass: process.env.password,
   },
 });
 
