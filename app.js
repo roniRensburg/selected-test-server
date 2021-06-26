@@ -12,8 +12,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/send", (req, res) => {
+  const emailRegexp =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
   try {
-    console.log(req.body);
+    if (!emailRegexp.test(req.body.email)) throw "email";
     const mailOptions = {
       from: req.body.email,
       to: "ronirensburg@gmail.com",
@@ -32,7 +35,6 @@ app.post("/send", (req, res) => {
 
     config.sendMail(mailOptions, function (err, info) {
       if (err) {
-        console.log(err);
         return res.status(500).json({
           success: false,
           message: "Something went wrong. Try again later",
@@ -46,12 +48,19 @@ app.post("/send", (req, res) => {
       }
     });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: "Something went wrong. Try again later",
-      err: err,
-    });
+    if (error == "email") {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email address. Try again",
+        err: error,
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        message: "Something went wrong. Try again later",
+        err: error,
+      });
+    }
   }
 });
 
