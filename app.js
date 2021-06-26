@@ -4,6 +4,8 @@ const cors = require("cors");
 const config = require("./config");
 const bodyParser = require("body-parser");
 const app = express();
+const dotenv = require("dotenv");
+dotenv.config();
 
 app.use(express.json());
 app.use(cors());
@@ -51,6 +53,8 @@ app.post("/send", (req, res) => {
   }
 });
 
-app.listen(1000, () => console.log("running"));
+var port = process.env.PORT || 1000;
+
+app.listen(port, () => console.log("running"));
 
 module.exports = app;
