@@ -30,7 +30,7 @@ app.post("/send", (req, res) => {
     if (!emailRegexp.test(req.body.email)) throw "email";
     const mailOptions = {
       from: req.body.email,
-      to: "ronirensburg@gmail.com",
+      to: "mor@selected.co.il",
       subject: req.body.subject,
       html: `
          <p>You have a new contact request.</p>
